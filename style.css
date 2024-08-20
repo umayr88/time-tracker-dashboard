@@ -1,0 +1,293 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+/*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Rubik", sans-serif;
+}
+/*
+    5. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+    6. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+    7. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+    8. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --work: hsl(15, 100%, 70%);
+  --play: hsl(195, 74%, 62%);
+  --study: hsl(348, 100%, 68%);
+  --exercise: hsl(145, 58%, 55%);
+  --social: hsl(264, 64%, 52%);
+  --self-care: hsl(43, 84%, 65%);
+
+  --Very-dark-blue: hsl(226, 43%, 10%);
+  --Dark-blue: hsl(235, 46%, 20%);
+  --Desaturated-blue: hsl(235, 45%, 61%);
+  --Pale-Blue: hsl(236, 100%, 87%);
+  --blue: hsl(246, 80%, 60%);
+}
+
+.container {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  background-color: var(--Very-dark-blue);
+  color: white;
+}
+
+.card {
+  isolation: isolate;
+  --top: -2.5rem;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub__card {
+  background-color: var(--Dark-blue);
+  margin-block: 60px;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  position: relative;
+  width: 80vw;
+  margin-inline: auto;
+  cursor: pointer;
+}
+
+.sub__card:hover {
+    background-color: hsl(235, 46%, 40%);
+}
+
+.daily,
+.weekly,
+.monthly {
+  cursor: pointer;
+}
+
+.card__bg {
+  position: absolute;
+  inset: 0;
+  top: var(--top);
+  left: 0;
+  right: 0;
+  border-radius: 15px;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.orange {
+  background-color: var(--work);
+}
+.blue {
+  background-color: var(--play);
+}
+.orangered {
+  background-color: var(--study);
+}
+.green {
+  background-color: var(--exercise);
+}
+.purple {
+  background-color: var(--social);
+}
+.yellow {
+  background-color: var(--self-care);
+}
+
+.ellipsis {
+  margin-left: auto;
+  margin-bottom: 15px;
+  position: absolute;
+  right: 30px;
+  top: 35px;
+  z-index: 3;
+}
+
+
+
+.card__icon {
+  position: absolute;
+  right: 20px;
+  top: -0.5rem;
+  z-index: -1;
+}
+
+.who {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--blue);
+  padding: 15px;
+  gap: 1rem;
+  border-radius: 15px;
+  z-index: 3;
+}
+
+.bg-filler {
+  background-color: var(--Dark-blue);
+  border-radius: 15px 15px 0 0;
+}
+
+.jeremy__image {
+  border: 3px solid white;
+  border-radius: 100vw;
+  width: 5rem;
+  aspect-ratio: 1 / 1;
+}
+
+.periods {
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--Dark-blue);
+  padding: 15px;
+  margin-top: -0px;
+  border-radius: 0 0 15px 15px;
+  z-index: -1;
+  color: var(--Desaturated-blue);
+}
+
+.periods > *:hover {
+    color: white;
+}
+
+.period--special {
+  color: white;
+}
+
+.h3__desktop {
+  display: none;
+}
+
+.previous__text {
+    color: var(--Desaturated-blue);
+}
+
+.text__gray {
+    color: var(--Pale-Blue);
+}
+
+@media (min-width: 1130px) {
+  .h3__desktop {
+    display: block;
+  }
+  .h3__mobile {
+    display: none;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    margin-inline: auto;
+    gap: 2rem;
+  }
+
+  .card__bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0rem 2rem;
+  }
+  .card__top {
+    grid-row: 1 / -1;
+    max-width: 250px;
+    margin-top: 20px;
+  }
+
+  .who {
+    display: grid;
+    gap: 2rem;
+    padding: 35px;
+    height: 350px;
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 200;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+    margin-top: .5rem;
+  }
+
+  .periods {
+    flex-direction: column;
+    gap: 1rem;
+    height: 150px;
+    padding: 25px;
+  }
+
+  .sub__card {
+    /* max-width: 250px; */
+    /* max-height: 200px; */
+    width: 100%;
+    min-width: 250px;
+    height: 70%;
+    padding: 25px;
+    flex-direction: column;
+    align-items: start;
+    gap: 0;
+  }
+
+  .sub__card h2 {
+    font-size: 18px;
+  }
+
+  .sub__card h3 {
+    font-size: 50px;
+    font-weight: 100;
+    margin-top: 1rem;
+    margin-bottom: -2.5rem;
+  }
+}
